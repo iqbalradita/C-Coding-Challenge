@@ -1,6 +1,4 @@
 # C-Coding-Challenge
-Certainly! Here's the README file for the OldPhonePadConverter class in C#:
-
 ## OldPhonePadConverter
 
 The OldPhonePadConverter class provides a method to convert input strings into the correct output based on an old phone keypad. It supports cycling through letters on buttons and pausing for a second when the same button is pressed consecutively. The converted output includes the send key "#" at the end.
