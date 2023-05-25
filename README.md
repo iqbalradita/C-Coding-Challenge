@@ -1,54 +1,40 @@
 # C-Coding-Challenge
-public static string OldPhonePad(string input)
-{
-    Dictionary<char, int> buttonMappings = new Dictionary<char, int>()
-    {
-        {'A', 2}, {'B', 2}, {'C', 2},
-        {'D', 3}, {'E', 3}, {'F', 3},
-        {'G', 4}, {'H', 4}, {'I', 4},
-        {'J', 5}, {'K', 5}, {'L', 5},
-        {'M', 6}, {'N', 6}, {'O', 6},
-        {'P', 7}, {'Q', 7}, {'R', 7}, {'S', 7},
-        {'T', 8}, {'U', 8}, {'V', 8},
-        {'W', 9}, {'X', 9}, {'Y', 9}, {'Z', 9}
-    };
+Certainly! Here's the README file for the OldPhonePadConverter class in C#:
 
-    StringBuilder output = new StringBuilder();
-    char previousChar = ' ';
+## OldPhonePadConverter
 
-    foreach (char c in input)
-    {
-        if (c == '#')
-        {
-            break;
-        }
-        else if (char.IsDigit(c))
-        {
-            int buttonNumber = int.Parse(c.ToString());
-            int numberOfPresses = 1;
+The OldPhonePadConverter class provides a method to convert input strings into the correct output based on an old phone keypad. It supports cycling through letters on buttons and pausing for a second when the same button is pressed consecutively. The converted output includes the send key "#" at the end.
 
-            // Count the number of consecutive presses for the same button
-            while (input.IndexOf(c, input.IndexOf(c) + numberOfPresses) == input.IndexOf(c) + numberOfPresses)
-            {
-                numberOfPresses++;
-            }
+### Usage
 
-            int letterIndex = (numberOfPresses - 1) % 3;
-            char currentChar = buttonMappings.ElementAt(buttonNumber - 1).Key;
+1. Create an instance of the OldPhonePadConverter class:
+   
+   OldPhonePadConverter converter = new OldPhonePadConverter();
+   
 
-            if (currentChar == previousChar)
-            {
-                output.Append(' ');
-                output.Append(currentChar);
-            }
-            else
-            {
-                output.Append(currentChar);
-            }
+2. Call the `ConvertInput` method and pass the input string to be converted:
+   
+   string outputString = converter.ConvertInput(inputString);
+   
 
-            previousChar = currentChar;
-        }
-    }
+3. The `ConvertInput` method will return the converted output string based on the old phone keypad.
 
-    return output.ToString();
-}
+### Example
+
+
+OldPhonePadConverter converter = new OldPhonePadConverter();
+string inputString = "222 2 22#";
+string outputString = converter.ConvertInput(inputString);
+Console.WriteLine(outputString);  // Output: CAB#
+
+
+### Test Cases
+
+The OldPhonePadConverter class includes several test cases to verify its functionality. You can run the tests by calling the `RunTests` method:
+
+
+OldPhonePadConverter converter = new OldPhonePadConverter();
+converter.RunTests();
+
+
+The test cases cover various scenarios, including single button presses, multiple button presses with pauses, no button presses, and button presses with pauses at the end. Each test case compares the expected output with the actual output and prints `True` if they match.
